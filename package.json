@@ -1,0 +1,11 @@
+{
+  "name": "weatherapp",
+  "version": "1.0.0",
+  "description": "open api city weather interface",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "manschotm",
+  "license": "ISC"
+}
