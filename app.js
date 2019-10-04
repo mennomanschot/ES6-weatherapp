@@ -23,7 +23,7 @@ function searchWeather() {
       updateWeather(WEATHER_PROXY);
       console.log(responseData);
     })
-    .catch(error => alert(error));
+    .catch(error => alert(error + '. Are you sure the city name is spelled correctly?'));
 }
 
 function updateWeather(weatherData) {
