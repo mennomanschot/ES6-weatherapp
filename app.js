@@ -41,9 +41,11 @@ function updateWeather(weatherData) {
 function weatherBoxStyle(weatherData) {
   if (weatherData.title == "Clouds" && weatherData.weatherIcon.includes('n')){
     document.getElementById("weather").style.background = "darkslategray";
+    document.getElementById("nightIcon").style.display = 'block';
   }
   else if (weatherData.title == "Clouds" && !weatherData.weatherIcon.includes('n')){
     document.getElementById("weather").style.background = "lightgray";
+    document.getElementById("dayIcon").style.display = 'block';
   }
 
   else if (weatherData.title == "Drizzle" && weatherData.weatherIcon.includes('n')){

@@ -104,6 +104,14 @@ header h1 {
     float: right;
 }
 
+.dayNight {
+/* position: absolute; */
+top: 20px;
+left: 20px;
+height: 40px;
+display: none;
+}
+
 #load {
     padding: 30px;
     max-width: 500px;
