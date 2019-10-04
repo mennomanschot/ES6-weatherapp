@@ -17,18 +17,65 @@ function searchWeather() {
   
   Http.fetchData(URL)
     .then(responseData => {
-      const WEATHER_DATA = new WeatherData(CITY_NAME, responseData.weather[0].description.toUpperCase());
+      const WEATHER_DATA = new WeatherData(CITY_NAME, responseData.weather[0].description.toUpperCase(), responseData.weather[0].icon, responseData.weather[0].main);
       const WEATHER_PROXY = new Proxy(WEATHER_DATA, WEATHER_PROXY_HANDLER);
       WEATHER_PROXY.temperature = responseData.main.temp;
       updateWeather(WEATHER_PROXY);
+      console.log(responseData);
     })
     .catch(error => alert(error));
-  }
+}
 
 function updateWeather(weatherData) {
-  ELEMENTS.ELEMENT_WEATHER_CITY.textContent = weatherData.cityName;
+  ELEMENTS.ELEMENT_WEATHER_CITY.textContent = (weatherData.title + ' in ' + weatherData.cityName).toUpperCase();
   ELEMENTS.ELEMENT_WEATHER_DESCRIPTION.textContent = weatherData.description;
+  ELEMENTS.ELEMENT_WEATHER_ICON.src = 'https://openweathermap.org/img/wn/' + weatherData.weatherIcon + '@2x.png';
   ELEMENTS.ELEMENT_WEATHER_TEMPERATURE.textContent = weatherData.temperature;
   ELEMENTS.ELEMENT_LOADING_TEXT.style.display = 'none';
   ELEMENTS.ELEMENT_WEATHER_BOX.style.display = 'block';
+  weatherBoxStyle(weatherData);
+  console.log(ELEMENTS.ELEMENT_WEATHER_ICON.src);
+}
+
+
+function weatherBoxStyle(weatherData) {
+  if (weatherData.title == "Clouds" && weatherData.weatherIcon.includes('n')){
+    document.getElementById("weather").style.background = "darkslategray";
+  }
+  else if (weatherData.title == "Clouds" && !weatherData.weatherIcon.includes('n')){
+    document.getElementById("weather").style.background = "lightgray";
+  }
+
+  else if (weatherData.title == "Drizzle" && weatherData.weatherIcon.includes('n')){
+    document.getElementById("weather").style.background = "slategray";
+  }
+  else if (weatherData.title == "Drizzle" && !weatherData.weatherIcon.includes('n')){
+    document.getElementById("weather").style.background = "gainsboro";
+  }
+
+  else if (weatherData.title == "Rain" && weatherData.weatherIcon.includes('n')){
+    document.getElementById("weather").style.background = "dimgray";
+  }
+  else if (weatherData.title == "Rain" && !weatherData.weatherIcon.includes('n')){
+    document.getElementById("weather").style.background = "darkgray";
+  }
+
+  else if (weatherData.title == "Clear" && weatherData.weatherIcon.includes('n')){
+    document.getElementById("weather").style.background = "darkblue";
+  }
+  else if (weatherData.title == "Clear" && !weatherData.weatherIcon.includes('n')){
+    document.getElementById("weather").style.background = "dodgerblue";
+  }
+
+  else if (weatherData.title == "Fog" && weatherData.weatherIcon.includes('n')){
+      document.getElementById("weather").style.background = "#4b2600";
+  }
+  else if (weatherData.title == "Fog" && !weatherData.weatherIcon.includes('n')){
+    document.getElementById("weather").style.background = "rosybrown";
+  }
+
+  else {
+    console.log('running the else loop');
+    document.getElementById("weather").style.background = 'lightblue';
+  }
 }

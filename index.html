@@ -11,16 +11,17 @@
 
   <body>
     <header>
-      <h1>Open API Weather App</h1>
+      <h1>global city weather</h1>
     </header>
     <div class="main">  
       <div id="search">
         <label for="city">City Name</label>
-        <input type="text" id="city" />
-        <button type="button">Show Weather!</button>
+        <input type="text" id="city" placeholder="enter a city name"/>
+        <button type="button">Show Weather</button>
       </div>
-      <div id="load">Loading...</div>
+      <div id="load">Waiting for data...</div>
       <div id="weather">
+        <img id="weatherIcon" src=""/>
         <h1 id="weatherCity">City Name</h1>
         <div id="weatherDescription">Weather Description</div>
         <div id="weatherTemperature">Temperature</div>
