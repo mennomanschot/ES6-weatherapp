@@ -34,18 +34,27 @@ function updateWeather(weatherData) {
   ELEMENTS.ELEMENT_LOADING_TEXT.style.display = 'none';
   ELEMENTS.ELEMENT_WEATHER_BOX.style.display = 'block';
   weatherBoxStyle(weatherData);
+  dayNightIcon(weatherData);
   console.log(ELEMENTS.ELEMENT_WEATHER_ICON.src);
 }
 
+function dayNightIcon(weatherData) {
+  if (weatherData.weatherIcon.includes('n')){
+    document.getElementById("nightIcon").style.display = 'block';
+    document.getElementById("dayIcon").style.display = 'none';
+  } else {
+    document.getElementById("dayIcon").style.display = 'block';
+    document.getElementById("nightIcon").style.display = 'none';
+  }
+}
 
 function weatherBoxStyle(weatherData) {
   if (weatherData.title == "Clouds" && weatherData.weatherIcon.includes('n')){
     document.getElementById("weather").style.background = "darkslategray";
-    document.getElementById("nightIcon").style.display = 'block';
+    
   }
   else if (weatherData.title == "Clouds" && !weatherData.weatherIcon.includes('n')){
     document.getElementById("weather").style.background = "lightgray";
-    document.getElementById("dayIcon").style.display = 'block';
   }
 
   else if (weatherData.title == "Drizzle" && weatherData.weatherIcon.includes('n')){
