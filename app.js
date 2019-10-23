@@ -21,7 +21,6 @@ function searchWeather() {
       const WEATHER_PROXY = new Proxy(WEATHER_DATA, WEATHER_PROXY_HANDLER);
       WEATHER_PROXY.temperature = responseData.main.temp;
       updateWeather(WEATHER_PROXY);
-      console.log(responseData);
     })
     .catch(error => alert(error + '. Are you sure the city name is spelled correctly?'));
 }
@@ -86,7 +85,7 @@ function weatherBoxStyle(weatherData) {
   }
 
   else {
-    console.log('running the else loop');
+    console.log('no weatherbox styling');
     document.getElementById("weather").style.background = 'lightblue';
   }
 }
